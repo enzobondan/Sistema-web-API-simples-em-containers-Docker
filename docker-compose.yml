@@ -1,37 +1,41 @@
-version: '3.8'
+version: "3.9"
 
 services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: meubanco
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
   backend:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile
+    build: ./backend
+    container_name: flask_api
+    environment:
+      DB_HOST: db
+      DB_NAME: meubanco
+      DB_USER: user
+      DB_PASS: password
     ports:
       - "5000:5000"
-    volumes:
-      - ./backend:/app
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/projects_db
-      - FLASK_ENV=development
 
   frontend:
-    image: nginx:alpine
+    build: ./frontend
+    container_name: simple_frontend
+    environment:
+      API_URL: "http://backend:5000"
     ports:
-      - "80:80"
-    volumes:
-      - ./frontend:/usr/share/nginx/html
+      - "8080:80"
     depends_on:
       - backend
 
-  db:
-    image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=projects_db
-
 volumes:
-  postgres_data:
+  db_data:
