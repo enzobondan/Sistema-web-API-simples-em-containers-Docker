@@ -1,12 +1,26 @@
-async function carregar() {
+async function carregarProjetos() {
   const res = await fetch(`${window._env_.API_URL}/get`);
   const dados = await res.json();
-  const lista = document.getElementById("lista");
-  lista.innerHTML = "";
-  dados.forEach(([id, conteudo]) => {
-    const li = document.createElement("li");
-    li.textContent = `${id}: ${conteudo}`;
-    lista.appendChild(li);
+
+  const tbody = document.querySelector("#tabelaProjetos tbody");
+  tbody.innerHTML = "";
+
+  dados.forEach((projeto) => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${projeto.id}</td>
+      <td>${projeto.title}</td>
+      <td>${projeto.description}</td>
+      <td>${projeto.category}</td>
+      <td>R$ ${projeto.budget.toFixed(2)}</td>
+      <td>${projeto.team_size}</td>
+      <td>${new Date(projeto.deadline).toLocaleDateString()}</td>
+      <td>${new Date(projeto.created_at).toLocaleString()}</td>
+    `;
+
+    tbody.appendChild(tr);
   });
 }
-carregar();
+
+carregarProjetos();

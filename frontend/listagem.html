@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Listagem</title>
-</head>
-<body>
-  <h1>Mensagens</h1>
-  <ul id="lista"></ul>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Listagem de Projetos</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>Projetos Cadastrados</h1>
+    <table border="1" id="tabelaProjetos">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>Orçamento</th>
+          <th>Tamanho da Equipe</th>
+          <th>Prazo</th>
+          <th>Criado em</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-  <script src="/static/env.js"></script>
-  <script src="/static/script_listagem.js"></script>
-</body>
+    <script src="/static/env.js"></script>
+    <script src="/static/script_listagem.js"></script>
+  </body>
 </html>

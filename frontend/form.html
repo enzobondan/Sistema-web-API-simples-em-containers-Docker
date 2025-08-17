@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cadastro de Projeto</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>Cadastrar Projeto</h1>
+    <form id="formProjeto">
+      <label for="title">Título:</label><br />
+      <input type="text" id="title" name="title" required /><br /><br />
+
+      <label for="description">Descrição:</label><br />
+      <textarea id="description" name="description" required></textarea
+      ><br /><br />
+
+      <label for="category">Categoria:</label><br />
+      <input type="text" id="category" name="category" required /><br /><br />
+
+      <label for="budget">Orçamento:</label><br />
+      <input
+        type="number"
+        step="0.01"
+        id="budget"
+        name="budget"
+        required
+      /><br /><br />
+
+      <label for="team_size">Tamanho da equipe:</label><br />
+      <input
+        type="number"
+        id="team_size"
+        name="team_size"
+        required
+      /><br /><br />
+
+      <label for="deadline">Prazo final:</label><br />
+      <input type="date" id="deadline" name="deadline" required /><br /><br />
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <script src="/static/env.js"></script>
+    <script src="/static/script_form.js"></script>
+  </body>
+</html>
