@@ -15,7 +15,7 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   backend:
-    build: ./backend
+    image: asafebelo/sistema-web-api-backend:latest
     container_name: flask_api
     environment:
       DB_HOST: db
@@ -28,7 +28,7 @@ services:
       - db
 
   frontend:
-    build: ./frontend
+    image: asafebelo/sistema-web-api-frontend:latest
     container_name: simple_frontend
     environment:
       API_URL: "http://backend:5000"
