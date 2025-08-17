@@ -1,4 +1,3 @@
-/* Estilos Gerais */
 body {
   font-family: Arial, sans-serif;
   max-width: 900px;
@@ -13,12 +12,33 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Formulário de Cadastro (form.html) */
 #formProjeto {
   display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+#formProjeto .title-group {
+  grid-column: 1 / -1;
+}
+
+#formProjeto .description-group {
+  grid-row: span 4;
+}
+
+#formProjeto .inline-group {
+  display: flex;
   gap: 15px;
-  max-width: 600px;
-  margin: 0 auto;
+}
+
+#formProjeto .inline-group .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+#formProjeto .inline-group .form-group.category {
+  flex: 0 0 auto;
+  width: 150px;
 }
 
 #formProjeto label {
@@ -40,7 +60,7 @@ h1 {
 }
 
 #formProjeto textarea {
-  min-height: 150px;
+  min-height: 200px;
   resize: vertical;
 }
 
@@ -53,16 +73,16 @@ h1 {
   cursor: pointer;
   font-weight: bold;
   margin-top: 10px;
+  grid-column: 1 / -1;
+  justify-self: start;
 }
 
-/* Estilo especial para o campo de orçamento */
 #budget {
-  padding-left: 30px;
+  padding-left: 35px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>')
     no-repeat 8px center;
 }
 
-/* Tabela de Projetos (listagem.html) */
 #tabelaProjetos {
   width: 100%;
   border-collapse: collapse;
@@ -85,13 +105,16 @@ h1 {
   background-color: #f2f2f2;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
-  body {
-    padding: 15px;
-  }
-
   #formProjeto {
     grid-template-columns: 1fr;
+  }
+
+  #formProjeto .inline-group {
+    flex-direction: column;
+  }
+
+  #formProjeto .inline-group .form-group.category {
+    width: 100%;
   }
 }

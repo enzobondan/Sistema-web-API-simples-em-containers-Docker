@@ -8,38 +8,76 @@
   <body>
     <h1>Cadastrar Projeto</h1>
     <form id="formProjeto">
-      <label for="title">Título:</label><br />
-      <input type="text" id="title" name="title" required /><br /><br />
+      <!-- Título (ocupa as duas colunas) -->
+      <div class="title-group">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required />
+      </div>
 
-      <label for="description">Descrição:</label><br />
-      <textarea id="description" name="description" required></textarea
-      ><br /><br />
+      <!-- Descrição (ocupa a coluna esquerda com altura maior) -->
+      <div class="description-group">
+        <label for="description">Descrição:</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
 
-      <label for="category">Categoria:</label><br />
-      <input type="text" id="category" name="category" required /><br /><br />
+      <!-- Linha 1: Categoria e Tamanho da Equipe -->
+      <div class="inline-group">
+        <div class="form-group category">
+          <label for="category">Categoria:</label>
+          <select id="category" name="category" required>
+            <option value="">Selecione...</option>
+            <option value="Desenvolvimento">Desenvolvimento</option>
+            <option value="Pesquisa">Pesquisa</option>
+            <option value="Design">Design</option>
+          </select>
+        </div>
+        <div class="form-group team-size">
+          <label for="team_size">Tamanho da equipe:</label>
+          <input
+            type="number"
+            id="team_size"
+            name="team_size"
+            min="1"
+            required
+          />
+        </div>
+      </div>
 
-      <label for="budget">Orçamento:</label><br />
-      <input
-        type="number"
-        step="0.01"
-        id="budget"
-        name="budget"
-        required
-      /><br /><br />
-
-      <label for="team_size">Tamanho da equipe:</label><br />
-      <input
-        type="number"
-        id="team_size"
-        name="team_size"
-        required
-      /><br /><br />
-
-      <label for="deadline">Prazo final:</label><br />
-      <input type="date" id="deadline" name="deadline" required /><br /><br />
+      <!-- Linha 2: Orçamento e Prazo -->
+      <div class="inline-group">
+        <div class="form-group">
+          <label for="budget">Orçamento:</label>
+          <input
+            type="text"
+            id="budget"
+            name="budget"
+            placeholder="0,00"
+            required
+            oninput="formatCurrency(this)"
+          />
+        </div>
+        <div class="form-group">
+          <label for="deadline">Prazo final:</label>
+          <input type="date" id="deadline" name="deadline" required />
+        </div>
+      </div>
 
       <button type="submit">Enviar</button>
     </form>
+
+    <script>
+      function formatCurrency(input) {
+        let value = input.value.replace(/\D/g, "");
+        if (!value) {
+          input.value = "";
+          return;
+        }
+        value = (parseInt(value, 10) / 100).toFixed(2);
+        value = value.replace(".", ",");
+        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        input.value = value;
+      }
+    </script>
 
     <script src="/static/env.js"></script>
     <script src="/static/script_form.js"></script>
