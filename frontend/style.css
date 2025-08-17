@@ -1,53 +1,97 @@
+/* Estilos Gerais */
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
-}
-
-h1 {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.6;
   color: #333;
 }
 
-form,
-table {
+h1 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Formulário de Cadastro (form.html) */
+#formProjeto {
+  display: grid;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#formProjeto label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#formProjeto input[type="text"],
+#formProjeto input[type="number"],
+#formProjeto input[type="date"],
+#formProjeto textarea,
+#formProjeto select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#formProjeto textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+#formProjeto button {
+  background: #2c3e50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Estilo especial para o campo de orçamento */
+#budget {
+  padding-left: 30px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>')
+    no-repeat 8px center;
+}
+
+/* Tabela de Projetos (listagem.html) */
+#tabelaProjetos {
+  width: 100%;
+  border-collapse: collapse;
   margin-top: 20px;
 }
 
-label {
-  font-weight: bold;
-}
-
-input,
-textarea,
-select {
-  width: 300px;
-  padding: 5px;
-}
-
-button {
-  padding: 8px 12px;
-  margin-top: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table th,
-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
+#tabelaProjetos th,
+#tabelaProjetos td {
+  padding: 10px;
+  border: 1px solid #ddd;
   text-align: left;
 }
 
-table th {
+#tabelaProjetos th {
+  background-color: #2c3e50;
+  color: white;
+}
+
+#tabelaProjetos tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  #formProjeto {
+    grid-template-columns: 1fr;
+  }
 }
