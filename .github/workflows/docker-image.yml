@@ -30,7 +30,7 @@ jobs:
       - name: Build & Push backend
         uses: docker/build-push-action@v6
         with:
-          context: ./backend
+          context: .
           file: ./backend/Dockerfile
           push: true
           tags: ${{ steps.webAPI_backend.outputs.tags }}
@@ -51,7 +51,7 @@ jobs:
       - name: Build & Push frontend
         uses: docker/build-push-action@v6
         with:
-          context: ./frontend
+          context: .
           file: ./frontend/Dockerfile
           push: true
           tags: ${{ steps.webAPI_frontend.outputs.tags }}
