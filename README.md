@@ -5,4 +5,4 @@ Resolução da tarefa de Redes II utilizando containers para rodar um sistema si
 Para executar o projeto:
 1. Faça o *git clone* do repositório
 2. Possuir o docker instalado no host
-3. Executar o docker compose up -d
+3. Executar o *docker compose up -d*
