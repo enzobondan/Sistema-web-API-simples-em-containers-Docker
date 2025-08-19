@@ -12,8 +12,13 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     
-    with app.app_context():
-        from . import routes
-        db.create_all()
-        
+    from .routes import init_app
+    init_app(app)
+    
+    try:
+        with app.app_context():
+            db.create_all()
+    except Exception as e:
+        app.logger.error(f"Failed to create database tables: {str(e)}")
+    
     return app
