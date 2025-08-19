@@ -13,6 +13,11 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d meubanco"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   backend:
     image: asafebelo/sistema-web-api-backend:latest
@@ -25,13 +30,15 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: on-failure
 
   frontend:
     image: asafebelo/sistema-web-api-frontend:latest
     container_name: simple_frontend
     environment:
-      API_URL: "http://backend:5000"
+      API_URL: "http://localhost:5000"
     ports:
       - "8080:80"
     depends_on:
