@@ -1,6 +1,9 @@
 async function carregarProjetos() {
-  const res = await fetch(`${window._env_.API_URL}/get`);
+  console.log(`chamando na rota: ${window._env_.API_URL}/api/projects`);
+  const res = await fetch(`${window._env_.API_URL}/api/projects`);
   const dados = await res.json();
+
+  console.log("Dados recebidos:", dados);
 
   const tbody = document.querySelector("#tabelaProjetos tbody");
   tbody.innerHTML = "";

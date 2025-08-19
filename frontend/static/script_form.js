@@ -18,13 +18,20 @@ document
         deadline: document.getElementById("deadline").value,
       };
 
-      const response = await fetch(`${window._env_.API_URL}/post`, {
+      console.log(`Enviando dados: ${window._env_.API_URL}/api/projects`);
+
+      console.log(`Dados: ${JSON.stringify(projeto)}`);
+
+      const response = await fetch(`${window._env_.API_URL}/api/projects`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(projeto),
       });
 
       if (!response.ok) {
+        console.log(
+          `Erro ao cadastrar projeto: ${response.status} ${response.statusText}`
+        );
         throw new Error("Erro ao cadastrar projeto");
       }
 
